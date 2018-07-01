@@ -1,0 +1,41 @@
+spring:
+  application.name: eureka-server
+  profiles:
+    active: p0
+
+server:
+  port: 8010
+  servlet:
+    context-path: /
+
+eureka:
+  dashboard.path: /
+  instance.hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url.myzone: http://${eureka.instance.hostname}:8010/eureka/eureka/,http://${eureka.instance.hostname}:8011/eureka/eureka/
+    availability-zones:
+      shanghai: myzone
+    region: shanghai
+  server:
+    enable-self-preservation: false
+    registry-sync-retries: 1
+
+
+---
+spring.profiles: p0
+server.port: 8010
+eureka:
+  instance.hostname: eureka-server-00
+  client.service-url:
+    myzone: http://eureka-server-01:8011/eureka/
+
+---
+spring.profiles: p1
+server.port: 8011
+eureka:
+  instance.hostname: eureka-server-01
+  client.service-url:
+    myzone: http://eureka-server-00:8010/eureka/
+

@@ -1,0 +1,20 @@
+server:
+  port: ${service.front.port}
+  servlet:
+    context-path: ${service.front.context-path}
+  context-path: ${service.front.context-path}  #for eureka
+spring.application.name: ${service.front.name}
+local.config.path: /Users/wzdxt/projects/msa-demo/build/config/application.yml
+eureka:
+  instance:
+    hostname: localhost
+zuul:
+  ignored-services: demo-oauth2
+  routes:
+    order:
+      path: /order/**
+      service-id: service-order
+    product:
+      path: /product/**
+      service-id: service-product
+

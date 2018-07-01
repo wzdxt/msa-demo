@@ -1,0 +1,12 @@
+server:
+  port: ${service.product.port}
+  servlet:
+    context-path: ${service.product.context-path}
+  context-path: ${service.product.context-path}  #for eureka
+spring.application.name: ${service.product.name}
+local.config.path: /Users/wzdxt/projects/msa-demo/build/config/application.yml
+eureka:
+  instance:
+    hostname: localhost
+
+

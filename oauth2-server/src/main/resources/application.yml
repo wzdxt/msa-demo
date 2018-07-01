@@ -1,0 +1,7 @@
+server:
+  port: ${service.oauth2.port}
+  servlet:
+    context-path: ${service.oauth2.context-path}
+  context-path: ${service.oauth2.context-path}  #for eureka
+spring.application.name: ${service.oauth2.name}
+local.config.path: /Users/wzdxt/projects/msa-demo/build/config/application.yml

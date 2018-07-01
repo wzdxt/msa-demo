@@ -1,0 +1,41 @@
+spring.security.oauth2.client:
+  provider:
+    myself:
+      authorization-uri: http://localhost:8081${service.oauth2.context-path}/oauth/authorize
+      token-uri: http://localhost:8081${service.oauth2.context-path}/oauth/token
+      user-info-uri: http://localhost:8081${service.oauth2.context-path}/user/get
+      user-name-attribute: username
+  registration:
+    embedded:
+      provider: myself
+      client-id: msa-demo
+      client-secret: 123456
+      authorization-grant-type: authorization_code
+      redirect-uri-template: http://localhost:8080/oauth-callback
+      scope: demo
+      client-name: demo-oauth2
+eureka:
+  client:
+    fetch-registry: true
+    serviceUrl:
+      myzone: http://eureka-server-00:8010/eureka/
+    availability-zones:
+      shanghai: myzone
+    region: shanghai
+service:
+  front:
+    name: demo-front
+    port: 8080
+    context-path: /
+  product:
+    name: service-product
+    port: 8082
+    context-path: /
+  order:
+    name: service-order
+    port: 8083
+    context-path: /
+  oauth2:
+    name: demo-oauth2
+    port: 8081
+    context-path: /oauth2
